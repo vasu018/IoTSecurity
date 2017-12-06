@@ -1,0 +1,94 @@
+{
+	"New CS": {
+		"Floor1": {
+		"Floor1": {
+		"Floor1": {
+			"Nest": { "cameras" : ["SKPiaFYJZnJltnK7kjTByulwcOx10Jd8g6M_pwnzdVuN94u5Ey8cBw"],
+					"smoke_co_alarms" : [
+						"_0ikr1Q_xmx-jVUfr4xae_jZTYdu7Lmf",
+						"1IoAWC9mPZU55sCPzXZIyvjZTYdu7Lmf",
+						"IoAWC9mPZWKlHCDutJQFPjZTYdu7Lmf",
+						"IoAWC9m-PZWOSBJJbYxNxfjZTYdu7Lmf"
+					]
+			},
+			"Belkin":{ "cameras" : [
+				"esrtetiuerotuiprteiroeu",
+				"ketrjklrejtljrtllkehyiu"],
+				"smoke_co_alarm":[
+					"weriuwyerifhdskjfjkdhbj",
+					"ekrtueoriusnfwerefsdsds"
+				]
+			},
+			"Samsung":{
+				"cameras" : [
+				"esrtetiuerotuiprteiroeu",
+				"ketrjklrejtljrtllkehyiu"],
+				"smoke_co_alarm":[
+					"weriuwyerifhdskjfjkdhbj",
+					"ekrtueoriusnfwerefsdsds"
+				]
+			},
+			"cameras": {
+				"Floor1 (Rm 120 Cam)": "SKPiaFYJZnJltnK7kjTByulwcOx10Jd8g6M_pwnzdVuN94u5Ey8cBw"
+			},
+			"smoke_co_alarms": {
+				"Floor1 (Rm 120 Protect)": "_0ikr1Q_xmx-jVUfr4xae_jZTYdu7Lmf"
+			},
+			"thermostats": {
+				"Floor1 (Rm 120 Thermo)": "IoAWC9m-PZU55sCPzXZIyvjZTYdu7Lmf",
+				"Floor1 (Rm 140 Thermo)": "IoAWC9m-PZWKlHCDutJQFPjZTYdu7Lmf",
+				"Floor1 (Rm 150 Thermo)": "IoAWC9m-PZWOSBJJbYxNxfjZTYdu7Lmf"
+			}
+		},
+		"Floor2": {
+			"cameras": {
+				"Floor2 (Rm 220 Cam)": "I1HPqswZVK1nc5KNLcSN7Ek5TIaRuFxn1UGH9IHR2xmbio2WwUa_9g"
+			},
+			"thermostats": {
+				"Floor2 (Rm 220 Thermo)": "IoAWC9m-PZWnUV4gstA-cvjZTYdu7Lmf",
+				"Floor2 (Rm 240 Thermo)": "IoAWC9m-PZWODWfmKsfKn_jZTYdu7Lmf",
+				"Floor2 (Rm 250 Thermo)": "IoAWC9m-PZXMlFHtZIfCvPjZTYdu7Lmf"
+			}
+		},
+		"Floor3": {
+			"cameras": {
+				"Floor3 (Rm 320 Cam)": "GH2VxZ0bb-kttaFDxDgtGR1FNB_ghZnMCHH23uPFze2T4xfF8_9D_A"
+			},
+			"thermostats": {
+				"Floor3 (Rm 320 Thermo)": "IoAWC9m-PZWFKt9jCij29PjZTYdu7Lmf",
+				"Floor3 (Rm 340 Thermo)": "IoAWC9m-PZWMfZq4-B8tAfjZTYdu7Lmf",
+				"Floor3 (Rm 350 Thermo)": "IoAWC9m-PZW9hvuACwybAfjZTYdu7Lmf"
+			}
+		}
+	},
+	"Old CS": {
+		"Floor1": {
+			"cameras": {
+				"Floor1 (1110 Cam)": "m6KC03vpMpfRiRyVnwHrHXAY-XkJS_dGnHGl8HX-e4EN3GD_BrqeHw"
+			},
+			"smoke_co_alarms": {
+				"Floor1 (1120 Protect)": "_0ikr1Q_xmyVTlm3p7Rk1_jZTYdu7Lmf"
+			},
+			"thermostats": {
+				"Floor1 (1110 Thermo)": "IoAWC9m-PZV18NRmb5_hePjZTYdu7Lmf",
+				"Floor1 (1120 Thermo)": "IoAWC9m-PZWPbn0NfeUs3vjZTYdu7Lmf",
+				"Floor1 (1130 Thermo)": "IoAWC9m-PZWaqQtAph5-9_jZTYdu7Lmf"
+			}
+		},
+		"Floor2": {
+			"cameras": {
+				"Floor2 (2210 Cam)": "iGIRlR4yaOhanLOUpACjKz0sqRW3Ey9GAH8qHCLlqkP9XxPDntXbKg",
+				"Floor2 (2240 Cam)": "DQfpQzGSymTBnCAf5Dby8ZT0Qg8v4hzAnPnY0rCoDhLT-s4NMKNpzw"
+			},
+			"smoke_co_alarms": {
+				"Floor2 (2210 Protect)": "_0ikr1Q_xmz0SZiIthgfZvjZTYdu7Lmf",
+				"Floor2 (2230 Protect)": "_0ikr1Q_xmwtSS5bauEFTPjZTYdu7Lmf"
+			},
+			"thermostats": {
+				"Floor2 (2210 Thermo)": "IoAWC9m-PZUvpfMqsxVVb_jZTYdu7Lmf",
+				"Floor2 (2230 Thermo)": "IoAWC9m-PZXDTq1EyWpoT_jZTYdu7Lmf",
+				"Floor2 (2240 Thermo)": "IoAWC9m-PZWqLJDl7Z1IGfjZTYdu7Lmf"
+			}
+		}
+	}
+}

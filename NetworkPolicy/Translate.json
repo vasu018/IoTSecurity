@@ -1,0 +1,22 @@
+{
+"NC{BLDG->F1->Nest}":"Enterprise-NW->LAN",
+"NP{BLDG->F1->Nest}":"Enterprise-NW->LAN",
+"NP{BLDG->F2->Nest}":"Enterprise-NW->LAN",
+"BC{BLDG->F1->Belkin}":"Enterprise-NW->LAN",
+"BS{BLDG->F2->Belkin}":"Enterprise-NW->LAN",
+"BC{BLDG->F2->Belkin}":"Enterprise-NW->LAN",
+"Nest{BLDG->F1}": "Enterprise-NW->LAN",
+"Belkin{BLDG->F1}": "Enterprise-NW->LAN",
+"Nest{Vendors}":"Enterprise-NW",
+"Belkin{Vendors}":"Enterprise-NW2",
+"Samsung{Vendors}":"Enterprise-NW",
+"Cameras{Vendors->Nest}":"Enterprise-NW->LAN",
+"Locks{Vendors->Belkin}" : "Enterprise-NW->LAN->LAN2",
+"Locks{Vendors->Samsung}" : "Enterprise-NW->LAN->LAN2",
+"Vendors{}":"Enterprise-NW",
+"Web{Application}": "Enterprise-NW->LAN->LAN3",
+"CRM{Application}": "Enterprise-NW->LAN->LAN2",
+"DB{Application}": "Enterprise-NW->LAN->LAN1",
+"Locks{BLDG->F1->Samsung}" : "Enterprise-NW->LAN->LAN3",
+"Cameras{Vendors->Belkin}":"Enterprise-NW->DMZ"
+}

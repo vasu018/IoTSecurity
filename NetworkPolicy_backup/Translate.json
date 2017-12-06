@@ -1,0 +1,8 @@
+{
+"NC{BLDG->F1->Nest}":"Enterprise-NW->LAN",
+"NP{BLDG->F1->Nest}":"Enterprise-NW->LAN",
+"NP{BLDG->F2->Nest}":"Enterprise-NW->LAN",
+"BC{BLDG->F1->Belkin}":"Enterprise-NW->LAN",
+"BS{BLDG->F2->Belkin}":"Enterprise-NW->LAN",
+"BC{BLDG->F2->Belkin}":"Enterprise-NW->LAN"
+}

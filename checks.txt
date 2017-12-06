@@ -1,0 +1,21 @@
+-> temperature_scale : either C/c or F/f
+-> target_temperature_c/target_temperature_f : between 9C(50F) and 32C(90F) , must be number
+											converts internally if scale is set different
+    If hvac_mode is set to "heat" or "cool", then you can access either target_temperature_f or target_temperature_c
+	If hvac_mode is set to "heat-cool" or "off", then you cannot access target_temperature_f or target_temperature_c
+	If hvac_mode is set to "heat-cool", 
+	then you can access target temperature values (high and low, for either F or C):
+		target_temperature_low_f and target_temperature_high_f
+		target_temperature_low_c and target_temperature_high_c
+	If hvac_mode is set to "eco", t
+	then you can access Eco Temperature values (high and low, for either F or C):
+		eco_temperature_low_f and eco_temperature_high_f
+		eco_temperature_low_c and eco_temperature_high_c
+		
+-> hvac_mode(discrepancy from doc)
+	can be changed acc to can_heat and can_cool values.
+	acc to doc can be changed only in lock mode.
+	
+-> locked_temp_min_f and locked_temp_max_f not changing(discrepancy from doc)
+-> fan_timer_duration: allows 30,60,120,240,480,960
+-> fan_timer_active change returns success but does not reflect the change in next call.

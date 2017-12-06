@@ -1,0 +1,562 @@
+{
+	"networks": {
+		"Enterprise-NW": {
+			"LAN": {
+				"LAN1": {
+					"LL1": "LL1"
+				},
+				"LAN2": "LAN2",
+				"LAN3": "LAN3",
+				"LAN4": "LAN4",
+				"LAN5": "LAN5"
+			},
+			"Admin": {
+				"AdminNet": "AdminNet",
+				"AdminNet1": "AdminNet1",
+				"AdminNet2": "AdminNet2",
+				"AdminNet3": "AdminNet3",
+				"AdminNet4": "AdminNet4",
+				"AdminNet5": "AdminNet5"
+			},
+			"DMZ": {
+				"Net4": "Net4",
+				"Net5": "Net5",
+				"Net6": "Net6",
+				"Net7": "Net7"
+			},
+			"WAN": {
+				"WNet1": "WNet1",
+				"WNet2": "WNet2",
+				"WNet3": "WNet3",
+				"WNet4": "WNet4",
+				"WNet5": "WNet5"
+			},
+			"Elevel": 2
+		},
+		"Enterprise-NW2": {
+			"LAN": {
+				"LAN1": {
+					"LL1": "LL1"
+				},
+				"LAN2": "Net2",
+				"LAN3": "Net3",
+				"LAN4": "LAN4",
+				"LAN5": "LAN5"
+			},
+			"Admin": {
+				"AdminNet": "AdminNet",
+				"AdminNet1": "AdminNet1",
+				"AdminNet2": "AdminNet2",
+				"AdminNet3": "AdminNet3",
+				"AdminNet4": "AdminNet4",
+				"AdminNet5": "AdminNet5"
+			},
+			"DMZ": {
+				"Net4": "Net4",
+				"Net5": "Net5",
+				"Net6": "Net6",
+				"Net7": "Net7"
+			},
+			"WAN": {
+				"WNet": "WNet1",
+				"WNet2": "WNet2",
+				"WNet3": "WNet3",
+				"WNet4": "WNet4",
+				"WNet5": "WNet5"
+			},
+			"Elevel": 2
+		},
+		"Internet": {
+			"Elevel": 0
+		},
+		"Enterprise-NW3": {
+			"LAN": {
+				"LAN1": {
+					"LL1": "LL1"
+				},
+				"LAN2": "Net2",
+				"LAN3": "Net3",
+				"LAN4": "LAN4",
+				"LAN5": "LAN5"
+			},
+			"Admin": {
+				"AdminNet": "AdminNet",
+				"AdminNet1": "AdminNet1",
+				"AdminNet2": "AdminNet2",
+				"AdminNet3": "AdminNet3",
+				"AdminNet4": "AdminNet4",
+				"AdminNet5": "AdminNet5"
+			},
+			"DMZ": {
+				"Net4": "Net4",
+				"Net5": "Net5",
+				"Net6": "Net6",
+				"Net7": "Net7"
+			},
+			"WAN": {
+				"WNet": "WNet1",
+				"WNet2": "WNet2",
+				"WNet3": "WNet3",
+				"WNet4": "WNet4",
+				"WNet5": "WNet5"
+			},
+			"Elevel": 2
+		},
+		"Enterprise-NW4": {
+			"LAN": {
+				"LAN1": {
+					"LL1": "LL1"
+				},
+				"LAN2": "LAN2",
+				"LAN3": "LAN3",
+				"LAN4": "LAN4",
+				"LAN5": "LAN5"
+			},
+			"Admin": {
+				"AdminNet": "AdminNet",
+				"AdminNet1": "AdminNet1",
+				"AdminNet2": "AdminNet2",
+				"AdminNet3": "AdminNet3",
+				"AdminNet4": "AdminNet4",
+				"AdminNet5": "AdminNet5"
+			},
+			"DMZ": {
+				"Net4": "Net4",
+				"Net5": "Net5",
+				"Net6": "Net6",
+				"Net7": "Net7"
+			},
+			"WAN": {
+				"WNet": "WNet1",
+				"WNet2": "WNet2",
+				"WNet3": "WNet3",
+				"WNet4": "WNet4",
+				"WNet5": "WNet5"
+			},
+			"Elevel": 2
+		},
+		"Enterprise-NW5": {
+			"LAN": {
+				"LAN1": {
+					"LL1": "LL1"
+				},
+				"LAN2": "Net2",
+				"LAN3": "Net3",
+				"LAN4": "LAN4",
+				"LAN5": "LAN5"
+			},
+			"Admin": {
+				"AdminNet": "AdminNet",
+				"AdminNet1": "AdminNet1",
+				"AdminNet2": "AdminNet2",
+				"AdminNet3": "AdminNet3",
+				"AdminNet4": "AdminNet4",
+				"AdminNet5": "AdminNet5"
+			},
+			"DMZ": {
+				"Net4": "Net4",
+				"Net5": "Net5",
+				"Net6": "Net6",
+				"Net7": "Net7"
+			},
+			"WAN": {
+				"WNet": "WNet1",
+				"WNet2": "WNet2",
+				"WNet3": "WNet3",
+				"WNet4": "WNet4",
+				"WNet5": "WNet5"
+			},
+			"Elevel": 2
+		},
+		"Enterprise-NW6": {
+			"LAN": {
+				"LAN1": {
+					"LL1": "LL1"
+				},
+				"LAN2": "Net2",
+				"LAN3": "Net3",
+				"LAN4": "LAN4",
+				"LAN5": "LAN5"
+			},
+			"Admin": {
+				"AdminNet": "AdminNet",
+				"AdminNet1": "AdminNet1",
+				"AdminNet2": "AdminNet2",
+				"AdminNet3": "AdminNet3",
+				"AdminNet4": "AdminNet4",
+				"AdminNet5": "AdminNet5"
+			},
+			"DMZ": {
+				"Net4": "Net4",
+				"Net5": "Net5",
+				"Net6": "Net6",
+				"Net7": "Net7"
+			},
+			"WAN": {
+				"WNet": "WNet1",
+				"WNet2": "WNet2",
+				"WNet3": "WNet3",
+				"WNet4": "WNet4",
+				"WNet5": "WNet5"
+			},
+			"Elevel": 2
+		}
+	},
+	"applications": {
+		"Application": {
+			"Web": {
+				"W1": "W1",
+				"W2": "W2",
+				"W3": "W3"
+			},
+			"DB": {
+				"D4": "D4",
+				"D5": "D5"
+			},
+			"CRM": {
+				"C1": "C1"
+			},
+			"LAN1": {
+				"L1": "L1"
+			},
+			"Elevel": 2
+		},
+		"Application1": {
+			"Web": {
+				"W1": "W1",
+				"W2": "W2",
+				"W3": "W3"
+			},
+			"DB": {
+				"D4": "D4",
+				"D5": "D5"
+			},
+			"CRM": {
+				"C1": "C1"
+			},
+			"LAN1": {
+				"L1": "L1"
+			},
+			"Elevel": 2
+		},
+		"Application2": {
+			"Web": {
+				"W1": "W1",
+				"W2": "W2",
+				"W3": "W3"
+			},
+			"DB": {
+				"D4": "D4",
+				"D5": "D5"
+			},
+			"CRM": {
+				"C1": "C1"
+			},
+			"LAN1": {
+				"L1": "L1"
+			},
+			"Elevel": 2
+		}
+	},
+	"iot-devices": {
+		"BLDG": {
+			"F1": {
+				"Hwel": {
+					"TS": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Nest": {
+					"NP": {
+						"D1": "D1",
+						"D2": "D2"
+					},
+					"NC": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Samsung": {
+					"SS": {
+						"D1": "D1",
+						"D2": "D2"
+					},
+					"SL": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				}
+			},
+			"F2": {
+				"Samsung": {
+					"SL": {
+						"D1": "D1",
+						"D2": "D2"
+					},
+					"SS": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Nest": {
+					"NP": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Belkin": {
+					"BS": {
+						"D1": "D1",
+						"D2": "D2"
+					},
+					"BC": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Hwel": {
+					"TS": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				}
+			},
+			"Elevel": 2
+		},
+		"BLDG2": {
+			"F1": {
+				"Hwel": {
+					"TS": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Nest": {
+					"NP": {
+						"D1": "D1",
+						"D2": "D2"
+					},
+					"NC": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Samsung": {
+					"SS": {
+						"D1": "D1",
+						"D2": "D2"
+					},
+					"SL": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				}
+			},
+			"F2": {
+				"Samsung": {
+					"SL": {
+						"D1": "D1",
+						"D2": "D2"
+					},
+					"SS": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Nest": {
+					"NP": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Belkin": {
+					"BS": {
+						"D1": "D1",
+						"D2": "D2"
+					},
+					"BC": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Hwel": {
+					"TS": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				}
+			},
+			"Elevel": 2
+		},
+		"BLDG3": {
+			"F1": {
+				"Hwel": {
+					"TS": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Nest": {
+					"NP": {
+						"D1": "D1",
+						"D2": "D2"
+					},
+					"NC": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Samsung": {
+					"SS": {
+						"D1": "D1",
+						"D2": "D2"
+					},
+					"SL": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				}
+			},
+			"F2": {
+				"Samsung": {
+					"SL": {
+						"D1": "D1",
+						"D2": "D2"
+					},
+					"SS": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Nest": {
+					"NP": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Belkin": {
+					"BS": {
+						"D1": "D1",
+						"D2": "D2"
+					},
+					"BC": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				},
+				"Hwel": {
+					"TS": {
+						"D1": "D1",
+						"D2": "D2"
+					}
+				}
+			},
+			"Elevel": 2
+		}
+	},
+	"Hosts": {
+		"Enterprise-NW": {
+			"LAN": {
+				"LAN1": {
+					"LL1": "LL1"
+				},
+				"LAN2": "LAN2",
+				"LAN3": "LAN3",
+				"LAN4": "LAN4",
+				"LAN5": "LAN5"
+			},
+			"Admin": {
+				"AdminNet": "AdminNet",
+				"AdminNet1": "AdminNet1",
+				"AdminNet2": "AdminNet2",
+				"AdminNet3": "AdminNet3",
+				"AdminNet4": "AdminNet4",
+				"AdminNet5": "AdminNet5"
+			},
+			"DMZ": {
+				"Net4": "Net4",
+				"Net5": "Net5",
+				"Net6": "Net6",
+				"Net7": "Net7"
+			},
+			"WAN": {
+				"WNet": "WNet1",
+				"WNet2": "WNet2",
+				"WNet3": "WNet3",
+				"WNet4": "WNet4",
+				"WNet5": "WNet5"
+			},
+			"Elevel": 2
+		},
+		"Enterprise-NW2": {
+			"LAN": {
+				"LAN1": {
+					"LL1": "LL1"
+				},
+				"LAN2": "Net2",
+				"LAN3": "Net3",
+				"LAN4": "LAN4",
+				"LAN5": "LAN5"
+			},
+			"Admin": {
+				"AdminNet": "AdminNet",
+				"AdminNet1": "AdminNet1",
+				"AdminNet2": "AdminNet2",
+				"AdminNet3": "AdminNet3",
+				"AdminNet4": "AdminNet4",
+				"AdminNet5": "AdminNet5"
+			},
+			"DMZ": {
+				"Net4": "Net4",
+				"Net5": "Net5",
+				"Net6": "Net6",
+				"Net7": "Net7"
+			},
+			"WAN": {
+				"WNet": "WNet1",
+				"WNet2": "WNet2",
+				"WNet3": "WNet3",
+				"WNet4": "WNet4",
+				"WNet5": "WNet5"
+			},
+			"Elevel": 2
+		},
+		"Internet": {
+			"Elevel": 0
+		},
+		"Enterprise-NW3": {
+			"LAN": {
+				"LAN1": {
+					"LL1": "LL1"
+				},
+				"LAN2": "Net2",
+				"LAN3": "Net3",
+				"LAN4": "LAN4",
+				"LAN5": "LAN5"
+			},
+			"Admin": {
+				"AdminNet": "AdminNet",
+				"AdminNet1": "AdminNet1",
+				"AdminNet2": "AdminNet2",
+				"AdminNet3": "AdminNet3",
+				"AdminNet4": "AdminNet4",
+				"AdminNet5": "AdminNet5"
+			},
+			"DMZ": {
+				"Net4": "Net4",
+				"Net5": "Net5",
+				"Net6": "Net6",
+				"Net7": "Net7"
+			},
+			"WAN": {
+				"WNet": "WNet1",
+				"WNet2": "WNet2",
+				"WNet3": "WNet3",
+				"WNet4": "WNet4",
+				"WNet5": "WNet5"
+			},
+			"Elevel": 2
+		}
+	}
+}
