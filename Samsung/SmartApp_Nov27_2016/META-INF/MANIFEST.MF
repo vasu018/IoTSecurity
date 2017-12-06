@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Executable: smartapps/smartappforweb/smartappweb.src
+
+Name: smartappweb.groovy
+SHA1-Digest: 0f3a0dd8d46dfe924d702e3696f3dd18d58fbdc9
+
+Name: i18n/messages.properties
+SHA1-Digest: da39a3ee5e6b4b0d3255bfef95601890afd80709
