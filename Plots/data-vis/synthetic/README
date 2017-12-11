@@ -1,0 +1,85 @@
+Synthetic Data Generator (SDG) README File
+
+The synthetic data generator is written by Diane J. Cook and is designed
+to generate smart home data based on input device and scenario information.
+
+SDG was developed and tested on RedHat Linux using the gcc compiler.
+To compile, type "gcc -o sdg sdg.c -lm
+
+Usage:  sdg datafile [debug]
+
+Input file format
+
+   The input file consists of device information, scenario information,
+and simulator time and data information.  A sample input file is given
+below.
+
+3
+lamp 2 on off
+thermostat 10 65 66 67 68 69 70 71 72 73 74
+television 11 on off 2 3 4 5 6 7 8 9 10
+2
+e1
+daily 1
+2
+lamp on NoOrder
+television 5 Uniform 10 20
+e2
+weekly 2
+3
+lamp off NoOrder
+thermostat 72 Normal 10 2
+television 10 NoOrder
+2002-10-07T09:30
+off 1 off
+10000
+
+   First, the number of devices is specified, then each device is described
+in terms of the device name, the number of possible states, and the state
+values.  In the example input file, devices lamp with 2 states, thermostat
+with 10 states, and television with 11 states are available.
+
+   Next, the number of scenarios is given.  For each scenario the scenario
+name is specific followed by the initializer information and actions.
+Possible initializers are
+
+   absolute n t1 t2 .. tn /* The scenario fires at specific times t1..tn */
+   hourly n               /* The scenario fires n times each hour */
+   daily n                /* The scenario fires n times each day */
+   dailyt n t1 t2 .. tn   /* The scenario fires daily at times t1 ..tn */
+   weekly n               /* The scenario fires n times each week */
+   monthly n              /* The scenario fires n times each month */
+   combined n      /* The scenario fires n times over the simulated time */
+   trigger d s     /* The scenario fires whenever device d is in state s */
+
+   In our example, scenario e1 fires once daily and scenario e2 fires
+twice weekly.  Each scenario then specifies the number of associated
+actions and provides the action descriptions.  An action is described
+by the name of the device it affects and the state to which it changes
+the device, followed by ordering information.  Ordering values are
+NoOrder, Uniform, and Normal.  NoOrder means that the action occurs in
+any order with respect to other actions in the scenario.  Uniform v1 v2
+means that the action will fire anywhere between v1 and v2 minutes from
+the preceding action (or beginning of the scenario, if this is the first
+ordered action) with a uniform probability distribution.  Normal v1 v2
+means that the action will fire after the preceding action or beginning
+of the scenario with a number of minutes drawn from a normal distribution
+with mean v1 and standard deviation v2.
+
+   In our example, scenario e1 has two actions.  The first turns lamp on
+and occurs in any order with respect to the other actions.  The second
+action turns the television to state 5 ten to twenty minutes after the
+beginning of the scenario.  Scenario e2 has three actions.  The first
+turns lamp off with no ordering, the second turns the thermostat to 72
+some number of minutes after the beginning of the scenario with a value
+normally distributed given mean 10 and standard deviation 2.  The third
+action turns the television to state 10 with no action ordering.
+
+   The next line of the input file specifies the simulated start
+date and time in ISO 8601 format.  The following line specifies the
+initial state for each device, and the final line specifies the number
+of simulated minutes that the sdg will run.
+
+   The synthetic data generator keeps track of a simulated clock with
+one minute increments.  Any action that fires at the current time is
+reported as output.

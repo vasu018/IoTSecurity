@@ -1,7 +1,9 @@
+import matplotlib
+matplotlib.use('Agg')
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-matplotlib.rcParams.update({'font.size':45})
+matplotlib.rcParams.update({'font.size':18})
 
 # data to plot
 n_groups = 10
@@ -46,10 +48,14 @@ rects4 = plt.bar(index+bar_width+bar_width*2, maido, bar_width,
                  color='yellow',
                  label='#levels=5')
  
-plt.xlabel('#PolicyIntents')
+plt.xlabel('# Leaf nodes (devices)')
 plt.ylabel('Memory Utilization (GB)')
-plt.xticks(index + bar_width*1.5, ('1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k'))
-plt.legend(loc='upper left', fontsize=32)
+plt.xticks(index + bar_width*1.5, ('10k', '20k', '30k', '40k', '50k', '60k', '70k', '80k', '90k', '100k'))
+plt.legend(loc='upper left', fontsize=18)
 #plt.ylim([0.2, 2])
+plt.grid(True)
+plt.legend(loc = 'best', fontsize = 18)
+plt.savefig("../Results/memory-abstraction.pdf", bbox_inches='tight')
+plt.show()
 plt.show()
 #plt.savefig('memory-abstraction.pdf')

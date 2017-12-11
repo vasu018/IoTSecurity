@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('Agg')
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -5,7 +7,7 @@ import matplotlib.pyplot as plt
 depths = [1, 2, 3, 4, 5]
 
 data = {}
-d = np.loadtxt('data.txt')
+d = np.loadtxt('data_more3.txt')
 for run in d:
     data.setdefault(1, []).append(run[0])
     data.setdefault(2, []).append(run[1])
@@ -34,11 +36,15 @@ def cdf(data, Colour, Label):
 cdf(data[1], 'r', 'depth=1')
 cdf(data[2], 'g', 'depth=2')
 cdf(data[3], 'b', 'depth=3')
-cdf(data[4], 'm', 'depth=4')
-cdf(data[5], 'k', 'depth=5')
+# Vasu changed
+cdf(data[5], 'm', 'depth=4')
+#cdf(data[5], 'k', 'depth=5')
 plt.ylim((0,1))
 plt.xlim((0,900))
 plt.ylabel("CDF")
-plt.xlabel("Latency (ms)")
+plt.xlabel("Latency (sec)")
+plt.grid(True)
+plt.legend(loc = 'best', fontsize = 18)
+plt.savefig("../Results/depth-latency.pdf", bbox_inches='tight')
 plt.legend(loc='lower right', numpoints=1)
-f.savefig("depth-latency.pdf")
+plt.show()

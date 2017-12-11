@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('Agg')
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
@@ -41,8 +43,12 @@ fig.subplots_adjust(left=0.12, right=0.95)
 #                 label='#Elevelnodes=5000')
 # 
 plt.xlabel('Depth', fontsize=40)
-plt.ylabel('Latency (ms)', fontsize=40)
+plt.ylabel('Latency (sec)', fontsize=40)
 plt.xticks(ind, ('1', '2', '3', '4', '5'))
 #plt.legend(loc='upper left', fontsize=40)
 #plt.ylim([0, 3])
+plt.grid(True)
+plt.legend(loc = 'best', fontsize = 19)
+plt.savefig("../Results/depth-latency.pdf", bbox_inches='tight')
+plt.show()
 plt.show()

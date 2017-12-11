@@ -1,12 +1,15 @@
+import matplotlib
+matplotlib.use('Agg')
 import os
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-matplotlib.rcParams.update({'font.size':45})
+matplotlib.rcParams.update({'font.size':18})
 
 runs = 10
 
-policies = ['1000', '2000', '3000', '4000', '5000', '6000', '7000', '8000', '9000', '10000']
+policies = ['10000', '20000', '30000', '40000', '50000', '60000', '70000', '80000', '90000', '100000']
+#policies = ['10k', '20k', '30k', '40k', '50k', '60k', '70k', '80k', '90k', '100k']
 
 data_5 = {}
 data_2 = {}
@@ -41,11 +44,12 @@ print pd5
 ax.errorbar(tics, pd5, fmt='--o', label='#Elevelnodes=5000', linewidth=5, marker='s', markersize=15, color='b')
 ax.errorbar(tics, pd2, fmt='--x', label='#Elevelnodes=2000', linewidth=5, marker='*', markersize=15, color='g')
 ax.errorbar(tics, pd1, fmt='--*', label='#Elevelnodes=1000', linewidth=5, marker='o', markersize=15, color='cyan')
-ax.legend(loc='upper left', numpoints=1, fontsize=40)
-plt.xlabel('#PolicyIntents')
-plt.ylabel('Latency (ms)')
-plt.xticks(range(len(tics)), [int(i)/1000 for i in policies], fontsize = 40)
-plt.yticks(fontsize = 40)
+ax.legend(loc='upper left', numpoints=1, fontsize=18)
+plt.xlabel('# Leaf nodes (devices)', fontsize=18)
+plt.ylabel('Latency (ms)', fontsize=18)
+#plt.xticks(range(len(tics)), [int(i)/1000 for i in policies], fontsize = 18)
 plt.ylim([100, 850])
-#plt.grid(linestyle='--')
+plt.grid(True)
+plt.legend(loc = 'best', fontsize = 18)
+plt.savefig("../Results/abstraction-latency.pdf", bbox_inches='tight')
 plt.show()
