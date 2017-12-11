@@ -1,2 +1,3 @@
-# IoTSecurity
-IoT Security Policy Framework
+# DynIntent: IoT Security Policy Framework
+
+Documentation will be updated soon.
