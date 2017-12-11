@@ -1,0 +1,65 @@
+{
+	"Enterprise-NW": {
+		"networks": "10.5.2.1-100",
+		"applications": "a-d",
+		"iot-devices": "10.5.2.1-10",
+		"Hosts": "g-h"
+	},
+	"Enterprise-NW2": {
+		"networks": "10.6.7.1-100",
+		"applications": "i-l",
+		"iot-devices": "10.6.7.1-30",
+		"Hosts": "q-z"
+	},
+	"Enterprise-NW->LAN": {
+		"networks": "192.168.1.1-100",
+		"applications": "192.168.1.1-20",
+		"iot-devices": "192.168.1.30-50",
+		"Hosts": "q-z"
+	},
+	"Enterprise-NW->DMZ": {
+		"networks": "192.168.2.1-100",
+		"applications": "i-l",
+		"iot-devices": "192.168.1.30-50",
+		"Hosts": "q-z"
+	},
+	"Enterprise-NW->LAN->LAN1": {
+		"networks": "192.168.1.60-80",
+		"applications": "192.168.1.60-65",
+		"iot-devices": "192.168.1.70-75",
+		"Hosts": "q-z"
+	},
+	"Enterprise-NW->LAN->LAN2": {
+		"networks": "10.2.1.0-100",
+		"applications": "10.2.1.0-10",
+		"iot-devices": "10.2.1.20-30",
+		"Hosts": "q-z"
+	},
+	"Enterprise-NW->LAN->LAN3": {
+		"networks": "10.8.2.1-100",
+		"applications": "10.8.2.1-20",
+		"iot-devices": "m-p",
+		"Hosts": "q-z"
+	},
+	"Enterprise-NW->Admin->AdminNet": {
+		"networks": "10.5.6.0-100",
+		"applications": "10.8.3.1-20",
+		"iot-devices": "anet",
+		"Hosts": "q-z"
+	},
+		"Enterprise-NW->DMZ->Net4": {
+		"networks": "10.8.3.1-100",
+		"applications": "10.8.3.1-20",
+		"iot-devices": "p",
+		"Hosts": "q-z"
+	},
+		"Enterprise-NW->DMZ->Net5": {
+		"networks": "10.8.3.1-100",
+		"applications": "10.8.3.1-20",
+		"iot-devices": "m",
+		"Hosts": "q-z"
+	},
+	"Internet": {
+		"networks": "*"
+	}
+}
