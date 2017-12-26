@@ -1,0 +1,342 @@
+import re,json
+import networkx as nx
+from os import walk
+from collections import OrderedDict
+
+class dirkey:
+    def __init__(self,kdir):
+        self.kdir = kdir
+        
+def is_conflicting(source,target):
+    return source==target   
+
+def handleReaction(p):
+    reactions = OrderedDict()
+    elements = p.split(">>>>")
+    sources = []
+    sdict = convert_to_dict(elements[0])
+    print(sdict)
+    for act in elements[1]:
+        for a in act.split(">"):
+            t = a.split(":")
+            parts = t[1].split("=")
+            reactions[t[0]] = {parts[0]:parts[1]}
+            #reactions[parts[0]] = parts[1]
+        
+
+def merge_list(llist,rlist):
+    common=[]
+    for i in llist:
+        if i in rlist:
+            common.append(i)
+    if not common:
+        return llist+rlist
+    merged_list=[]
+    lpos=0
+    rpos=0
+    for i in common:
+        lindex = llist.index(i)
+        rindex = rlist.index(i)
+        if set(llist[lpos:lindex]).intersection(set(rlist[rpos:rindex])):
+            return 
+        merged_list += llist[lpos:lindex]
+        merged_list += rlist[rpos:rindex]
+        if i in merged_list:
+            return
+        merged_list.append(i)
+        lpos = lindex+1
+        rpos = rindex+1
+    if lpos<len(llist):
+        merged_list += llist[lpos:len(llist)]
+    if rpos<len(rlist):
+        merged_list += rlist[rpos:len(rlist)]
+    return merged_list    
+
+def add_edge(source,target,propdict,graphsource,check=None):
+    print(target)
+    for s in source:
+        for t in target:
+            if not graphsource.has_edge(s,t):
+                if check:
+                    continue
+                graphsource.add_edges_from([(s,t,propdict)])
+                sp = re.search('(.*){(.*)}',s)
+#                 tp = re.search('(.*){(.*)}',t)
+                if sp:
+                    nx.set_node_attributes(graphsource,"parent",{s:sp.group(2)})
+                    nx.set_node_attributes(graphsource,"polabstract",{s:propdict['sourceprop']['polabstract']})
+            else:
+                isadded = False
+                for e in graphsource[s][t]:
+                    scomp = is_conflicting(graphsource[s][t][e]['sourceprop'], propdict['sourceprop'])
+                    if scomp:
+                        if 'action' in graphsource[s][t][e] and (graphsource[s][t][e]['action']=='DENY'):
+                            if 'action' in propdict and (propdict['action']=='DENY'):
+                                print("duplicate policy exist between",s," and ",t)
+                            else:
+                                print("conflicting policy exist between",s," and ",t)
+                            isadded = True
+                        elif 'SFC' in propdict and 'SFC' in graphsource[s][t][e]:
+                            merged = merge_list(graphsource[s][t][e]['SFC'], propdict['SFC'])
+                            if merged:
+                                print("SFC merged with existing SFC")
+                                graphsource[s][t][e]['SFC']=merged
+                            else:
+                                print("conflicting SFC exist between",s," and ",t)
+                            isadded = True
+                        elif 'SFC' in graphsource[s][t][e]:
+                            print("duplicate policy exist between",s," and ",t)
+                        break
+                if not (isadded and check):
+                    graphsource.add_edges_from([(s,t,propdict)])
+def key_at_depth(dct, dpt):
+    if dpt > 1:
+        rlist={}
+        for k in dct:
+            if k=='Elevel':
+                continue
+            if isinstance(dct[k], dict):
+                lower=key_at_depth(dct[k], dpt-1)
+                for i in lower:
+                    if lower[i]:
+                        rlist[i]="%s->%s"%(k,lower[i])
+                    else:
+                        rlist[i]=k
+            else:
+                rlist[dct[k]] = ""
+        return rlist
+    else:
+        temp = list(dct.keys())
+        if 'Elevel' in temp:
+            temp.remove('Elevel')
+        return dict.fromkeys(temp)
+
+def convert_to_dict(policy):
+    subparts = policy.split(".")
+    retlist ={}
+    for part in subparts:
+        result = re.search('(.*){(.*)}',part)
+        retlist[result.group(1)] = result.group(2) 
+    return retlist
+
+def digestPolicies (policy_file):
+    all_policies = [] 
+    for pline in open(policy_file):
+        policy_line = pline.strip()
+        policy_line = re.sub('\s+', ' ', policy_line).strip()
+        if not policy_line.startswith("#"):
+            #print policy_line.rstrip()
+            if not re.match(r'^\s+', pline):
+                all_policies.append(policy_line)
+
+    all_policies_dict = parsePolicies(all_policies)
+    return all_policies_dict
+
+
+#
+# Parse the policies for extracting the policy attributes
+#
+def parsePolicies (policies_t):
+    #print "# Policies for Parsing:\n", policies_t
+    sfcs_t = []
+    acls_t = []
+    index = 1 
+    for policy in policies_t:
+        #print policy
+        policy = re.sub('\s+', ' ', policy).strip()
+        p_sfc = re.compile(r'>>>>')
+        p_acl = re.compile(r'=>')
+        if p_sfc.search(policy):
+            # Debug Message for SFC Policy
+            #print "#",index,". SFC Policy" 
+            #print policy, "\n"
+            sfcs_t.append(policy)
+            index = index + 1 
+        elif p_acl.search(policy):
+            # Debug Message for ACL Policy
+            #print "#",index,". Network ACL Policy" 
+            #print policy, "\n"
+            acls_t.append(policy)
+            index = index + 1 
+        else:
+            print("# Invalid Policy Specified") 
+            print(policy, "\n")
+
+    sfcsDict = sfcsToPythonDict (sfcs_t)
+    aclsDict = aclsToPythonDict (acls_t)
+    allPolicies_t = {}
+    allPolicies_t['ACL'] = {}
+    allPolicies_t['SFC'] = {}
+    allPolicies_t['ACL'] = aclsDict['ACL']
+    allPolicies_t['SFC'] = sfcsDict['SFC']
+    return allPolicies_t
+#
+# SFCs list (Array) to Python Dictionary
+#
+def sfcsToPythonDict (sfcPolicies_t):
+
+#     print("\n\n# SFC Policies to Python Dict ... ")
+    policies_dict_t1 = {}
+    policies_dict_t1['SFC'] = {}
+    for index, policy in enumerate(sfcPolicies_t):
+        # Debug messages for policy
+        #print index+1, ":", policy
+        policy = re.sub('\s+', ' ', policy).strip()
+        policy_attributes = re.split(">>", policy)
+        policies_dict_t1['SFC'][index+1] = {}
+        for sub_index, attr in enumerate(policy_attributes):
+            # Debug messages for policy attributes
+            #print "\t", sub_index+1, ":", attr
+            attr = re.sub('\s+', '', attr).strip()
+            if (sub_index == 0):
+                policies_dict_t1['SFC'][index+1]['source'] = attr
+                #print attr
+            elif (sub_index == len(policy_attributes) -1):
+                policies_dict_t1['SFC'][index+1]['target'] = attr
+                #print attr
+            else:
+                policies_dict_t1['SFC'][index+1][sub_index] = attr
+    
+    return policies_dict_t1        
+
+#
+# ACLs list (Array) to Python Dictionary
+#
+def aclsToPythonDict (aclPolicies_t):
+    
+#     print("# ACL Policies list to Python Dict ... ")
+    policies_dict_t2 = {}
+    policies_dict_t2['ACL'] = {}
+    for index, policy in enumerate(aclPolicies_t):
+        # Debug messages for policy
+        #print index+1, ":", policy
+        policies_dict_t2['ACL'][index+1] = {}
+        policy = re.sub('\s+', ' ', policy).strip()
+        policy_attributes = re.split("=>|!=>", policy)
+        acl_type = re.compile(r'!=> | ! =>')
+        if acl_type.search(policy):
+            policies_dict_t2['ACL'][index+1]['action'] = "DENY"
+        else:
+            policies_dict_t2['ACL'][index+1]['action'] = "ALLOW"
+
+        for sub_index, attr in enumerate(policy_attributes):
+            attr = re.sub('\s+', '', attr).strip()
+            if (sub_index == 0):
+                policies_dict_t2['ACL'][index+1]['source'] = attr
+                #print attr
+            elif (sub_index == len(policy_attributes) -1):
+                policies_dict_t2['ACL'][index+1]['target'] = attr
+                #print attr
+        
+    return policies_dict_t2        
+
+def set_min_level(policylist,abstract,lowestlevels):
+    for poltype in policylist:
+        for pol in policylist[poltype]:
+            sourcepart=convert_to_dict(policylist[poltype][pol]['source'])
+            policylist[poltype][pol]['dictrep']={}
+            policylist[poltype][pol]['dictrep']['source']=sourcepart
+
+            sourcepath = sourcepart['parent'].split("->")
+            sourcepath = list(filter(None, sourcepath))
+            sourcepol_abstract = list(set(sourcepart) & set(abstract))[0]
+            sourcepart['polabstract']=sourcepol_abstract
+            if not sourcepol_abstract in lowestlevels:
+                lowestlevels[sourcepol_abstract]={}
+            if sourcepath and sourcepath[0] not in lowestlevels[sourcepol_abstract]:
+                lowestlevels[sourcepol_abstract][sourcepath[0]]=min(len(sourcepath),abstract[sourcepol_abstract][sourcepath[0]]['Elevel'])
+            elif sourcepath and (lowestlevels[sourcepol_abstract][sourcepath[0]] < len(sourcepath) <= abstract[sourcepol_abstract][sourcepath[0]]['Elevel']):
+                lowestlevels[sourcepol_abstract][sourcepath[0]] = len(sourcepath)
+            elif (not sourcepath) and (policylist[poltype][pol]['dictrep']['source'][sourcepol_abstract] not in lowestlevels[sourcepol_abstract]):
+                lowestlevels[sourcepol_abstract][policylist[poltype][pol]['dictrep']['source'][sourcepol_abstract]]=0
+                
+       
+def compose_policy(policylist,abslevels,lowestlevels):
+    for poltype in policylist:                                  # poltype here means SFC or ACL
+        for pol in policylist[poltype]:
+            if not policylist[poltype][pol]:
+                continue
+            pdict = policylist[poltype][pol]['dictrep']         # dict containing source and destination fields
+            sourcenodes=[]
+            spoltype = pdict['source']['polabstract']           # networks, application etc (top level in abstractions)
+            spoltarget = pdict['source'][spoltype]              # source nodes candidates LAN1, LAN2 etc    
+    
+            edgeprop = {}
+            edgeprop['sourceprop']={}
+            
+            if poltype == 'SFC':
+                edgeprop['SFC']=[]
+                for k in policylist[poltype][pol]:
+                    if type(k)==type(0):
+                        edgeprop['SFC'].append(policylist[poltype][pol][k])
+            else:
+                edgeprop['action']=policylist[poltype][pol]['action']
+            
+            sparent = pdict['source']['parent'].split("->")
+            sparent = list(filter(None, sparent))
+            if (sparent and len(sparent) == lowestlevels[spoltype][sparent[0]] or 
+                ((spoltarget in lowestlevels[spoltype]) and lowestlevels[spoltype][spoltarget]==0)):
+                sourcenodes+=["%s{%s}"%(i,pdict['source']['parent']) for i in spoltarget.split(",")]
+            else:
+                if not sparent:
+                    diff = lowestlevels[spoltype][spoltarget]
+                    location = abslevels[spoltype]
+                else:
+                    diff = lowestlevels[spoltype][sparent[0]] - len(sparent)
+                    location = abslevels[spoltype][sparent[0]]
+                    for i in sparent[1:]:
+                        location = location[i]
+                for i in spoltarget.split(","):
+                    childnodes = key_at_depth(location[i], diff)    
+                    for n in childnodes:
+                        if childnodes[n]:
+                            if sparent:
+                                childnodes[n] = "%s->%s->%s"%(pdict['source']['parent'],i,childnodes[n])
+                            else:
+                                childnodes[n] = "%s->%s"%(i,childnodes[n]) 
+                        else:
+                            if sparent:
+                                childnodes[n] = "%s->%s"%(pdict['source']['parent'],i)
+                            else:
+                                childnodes[n] = i 
+                        sourcenodes+=["%s{%s}"%(n,childnodes[n])]
+                        
+                        
+        
+             
+            for prop in pdict['source']:
+                if prop==pdict['source']['polabstract'] or prop == 'parent':
+                    continue
+                edgeprop['sourceprop'][prop]=pdict['source'][prop]
+                
+            if poltype=='ACL':
+                add_edge(sourcenodes, [policylist[poltype][pol]['target']], edgeprop, actiongraph)
+            print(sourcenodes)
+            print(edgeprop)
+
+def create_graphs():
+    users = []
+    for (dirpath, dirnames, filenames) in walk("policies"):
+        users.extend(filenames)
+        break
+
+    abstractions = json.load(open("abstractions/abs.json", "r"))
+    for user in users:
+        lowestlevels={}
+        policylist = digestPolicies("policies/"+user)
+        set_min_level(policylist,abstractions,lowestlevels)
+        compose_policy(policylist,abstractions,lowestlevels)
+
+        
+#     return Graphs
+if __name__ == "__main__":
+    actiongraph = nx.MultiDiGraph()
+    Graphs = create_graphs()
+    for n in actiongraph.adjacency_iter():
+        if n[1]:
+            print(n)
+#     for g in Graphs:
+#         print(g)
+#         for n in Graphs[g]['main'].adjacency_iter():
+#             if n[1]:
+#                 print(n)

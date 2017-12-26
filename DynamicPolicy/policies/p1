@@ -1,9 +1,0 @@
-#iot-devices{Thermostats}.parent{Vendors->Nest}.temperature{>70} >>>> "Camera:Switch=on" >> "Thermostat:target_temp=50" >> "Smoke_CO_Alarm:mode=alert"
-
-iot-devices{Cameras}.parent{Vendors->Nest}.actor{<>Admin}.timeslot{1800-900} !=> "Add-users"
-
-#iot-devices{Cameras}.parent{Vendors->Nest}.actor{<>Admin}.timeslot{2100-900} !=> "Deep-link-Sharing"
-
-#iot-devices{Cameras}.parent{Vendors->Nest}.actor{<>Admin}.timeslot{2100-900} !=> "Camera-Switch"
-
-#iot-devices{Vendors}.parent{}.actor{<>Admin}.timeslot{2100-900} !=> "Streaming-Switch"
