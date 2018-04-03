@@ -1,0 +1,19 @@
+3
+lamp 2 on off
+thermostat 10 65 66 67 68 69 70 71 72 73 74
+television 11 on off 2 3 4 5 6 7 8 9 10
+2
+e1
+daily 1
+2
+lamp on NoOrder
+television 5 Uniform 10 20
+e2
+weekly 2
+3
+lamp off NoOrder
+thermostat 72 Normal 10 2
+television 10 NoOrder
+2002-10-07T09:30
+off 1 off
+10000
